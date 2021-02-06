@@ -11,7 +11,7 @@ const products = [];
 // seeding data
 const genders = ['M\'s', 'W\'s'];
 const impacts = ['fair trade', 'organic cotton', 'recycled polyester', 'hemp'];
-const productIds = [];
+const productIds = [];  
 for (let i = 1; i <= 100; i += 1) {
   productIds[i - 1] = i;
 }
