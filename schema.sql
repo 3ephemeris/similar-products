@@ -13,6 +13,11 @@ CREATE TABLE product (
   price decimal
 )
 
+COPY product (product_name, numPictures, numTags, price)
+FROM '/Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/products.csv'
+DELIMITER ','
+CSV HEADER;
+
 DROP TABLE IF EXISTS pictures;
 
 CREATE TABLE pictures (
@@ -24,6 +29,11 @@ CREATE TABLE pictures (
     REFERENCES product (product_id)
 )
 
+COPY pictures (color, img, product_id)
+FROM '/Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/pictures.csv'
+DELIMITER ','
+CSV HEADER;
+
 DROP TABLE IF EXISTS tags;
 
 CREATE TABLE tags (
@@ -33,3 +43,8 @@ CREATE TABLE tags (
   FOREIGN KEY (product_id)
     REFERENCES product (product_id)
 )
+
+COPY tags (tag, product_id)
+FROM '/Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/tags.csv'
+DELIMITER ','
+CSV HEADER;
