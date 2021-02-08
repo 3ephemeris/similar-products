@@ -9,7 +9,6 @@ CREATE TABLE product (
   product_id serial PRIMARY KEY,
   product_name varchar(60),
   numPictures int,
-  numPictures int,
   numTags int,
   price decimal
 )
