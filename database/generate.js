@@ -42,7 +42,7 @@ const writeEntries = (stream, amount, dataFunc, encoding, cb) => {
       id += 1;
       const data = dataFunc(id);
       if (i % 100000 === 0) {
-        console.log(`a hundred thousand rows written🕺 ${i} left to go`);
+        console.log(`a hundred thousand rows written ${i} left to go`);
       }
       if (i === 0) {
         stream.write(data, encoding, cb);
