@@ -33,11 +33,12 @@ const Info = (props) => {
   const { product } = props;
   return (
     <Wrapper>
-      <Name>{product.name}</Name>
-      <Price>{product.price}</Price>
-      {renderImpacts(product.impacts)}
+      {/* modified to have same shape of data  */}
+      <Name>{product.product_name}</Name>
+      <Price>${product.price}</Price>
+      {renderImpacts(product.tag)}
       <Colors>
-        <span>{product.num_colors}</span>
+        <span>{product.num_tags}</span>
         <span> colors</span>
       </Colors>
     </Wrapper>

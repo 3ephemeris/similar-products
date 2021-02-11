@@ -12,6 +12,9 @@
     "react-dev": "webpack -w",
     "build": "webpack",
     "test": "jest",
+    "k6": "k6 run script.js",
+    "generate": "node database/generate.js",
+    "seed": "psql -h localhost -d postgres -f schema.sql",
     "db:setup": "node database/seedProducts.js && node database/seedWishList.js",
     "docker": "webpack & node database/seedProducts.js & node database/seedWishList.js & node server"
   },
@@ -23,6 +26,7 @@
     "faker": "^5.1.0",
     "mongoose": "^5.11.11",
     "morgan": "^1.10.0",
+    "newrelic": "^7.1.1",
     "nodemon": "^2.0.7",
     "pg": "^8.5.1",
     "prop-types": "^15.7.2",

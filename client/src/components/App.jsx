@@ -57,15 +57,18 @@ class App extends React.Component {
 
     axios.get(`/api/products/${productId}`)
       .then((res) => {
-        products = res.data;
-      })
-      .then(() => axios.get(`/api/wishlist/${productId}`))
-      .then((res) => {
         this.setState({
-          products,
-          wishList: res.data.products,
-        });
+          products: res.data.rows
+        })
+        products = res.data.rows;  // added rows to massage the data E.B
       })
+      // .then(() => axios.get(`/api/wishlist/${productId}`))
+      // .then((res) => {
+      //   this.setState({
+      //     products,
+      //     wishList: res.data.products,
+      //   });
+      // })
       .catch((err) => {
         console.log(err);
       });

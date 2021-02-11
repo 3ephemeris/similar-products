@@ -17,10 +17,11 @@ const ProductContainer = styled.div`
   display: flex;
   width: fit-content;
   transition: transform 0.2s 0s ease-in;
-  transform: translateX(-${(props) => props.index}px)
+  transform: translateX(-${(props) => props.index}px);
 `;
 
 const Carousel = (props) => {
+  // console.log('from carousel: ', props);
   const {
     products,
     index,
@@ -49,7 +50,7 @@ const Carousel = (props) => {
 
             return (
               <Product
-                key={product._id}
+                key={product.product_id}
                 product={product}
                 inWishList={inWishList}
                 addToWishList={addToWishList}
