@@ -1,14 +1,15 @@
 /* eslint-disable no-console */
+require('newrelic');
 const express = require('express');
 const cors = require('cors');
 const { Pool } = require('pg');
-require('newrelic');
+require('dotenv').config();
 
 const pool = new Pool({
-  user: "Taivnaa",
-  password: "",
-  database: 'similarproducts',
-  port: 5432
+  user: process.env.PGUSER,
+  password: process.env.PGPASSWORD,
+  database: process.env.PGDATABASE,
+  port: process.env.PGPORT
 });
 pool.connect();
 
@@ -18,6 +19,17 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(express.static(`${__dirname}/../public`));
+
+// /Users/Taivnaa/Desktop/SSH/similar-products.pem
+// ubuntu@ec2-54-219-179-166.us-west-1.compute.amazonaws.com 
+// /Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/schema.sql 
+// /Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/pictures.csv 
+// /Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/products.csv 
+// /Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/tags.csv 
+
+// scp -i /Users/Taivnaa/Desktop/SSH/similar-products.pem /Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/pictures.csv ubuntu@ec2-54-219-179-166.us-west-1.compute.amazonaws.com:~/ 
+// scp -i /Users/Taivnaa/Desktop/SSH/similar-products.pem /Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/products.csv  ubuntu@ec2-54-219-179-166.us-west-1.compute.amazonaws.com:~/ 
+// scp -i /Users/Taivnaa/Desktop/SSH/similar-products.pem /Users/Taivnaa/Desktop/hack-reactor/SDC/similar-products/tags.csv  ubuntu@ec2-54-219-179-166.us-west-1.compute.amazonaws.com:~/ 
 
 // return array of product objects that are similar to the specified product
 app.get('/api/products/:productId',  (req, res) => {
