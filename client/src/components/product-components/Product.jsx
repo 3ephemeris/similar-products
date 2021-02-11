@@ -35,19 +35,19 @@ const Img = styled.img`
 
 // Image Component (stateless)
 const Image = (props) => {
-  let image;
-  const { variation } = props;
-  const { mouseOn } = props;
+  // let image;
+  // const { variation } = props;
+  // const { mouseOn } = props;
 
-  if (mouseOn === false) {
-    image = variation.original;
-  } else {
-    image = variation.onHover;
-  }
-
+  // if (mouseOn === false) {
+  //   image = variation.original;
+  // } else {
+  //   image = variation.onHover;
+  // }
+  // mouseOn={mouseOn}
   return (
     <ImageWrapper>
-      <Img src={image} alt="" mouseOn={mouseOn} />
+      <Img src={props.img} alt="" />
     </ImageWrapper>
   );
 };
@@ -59,8 +59,8 @@ class Product extends React.Component {
 
     const { product } = this.props;
 
+    // currentVariation: product.variations[0],
     this.state = {
-      currentVariation: product.variations[0],
       mouseOn: false,
     };
 
@@ -113,13 +113,13 @@ class Product extends React.Component {
 
   render() {
     const { currentVariation, mouseOn } = this.state;
-
+    // console.log('from product: ', this.props.product);
     return (
       <ProductWrapper
-        onMouseEnter={this.onMouseEnter}
-        onMouseLeave={this.onMouseLeave}
+      // onMouseEnter={this.onMouseEnter}
+      // onMouseLeave={this.onMouseLeave}
       >
-        <Image variation={currentVariation} mouseOn={mouseOn} />
+        <Image img={this.props.product.img} variation={currentVariation} mouseOn={mouseOn} />
         {this.renderBottomView()}
       </ProductWrapper>
     );
@@ -127,27 +127,27 @@ class Product extends React.Component {
 }
 
 // --- PropTypes ---
-Image.propTypes = {
-  variation: PropTypes.shape({
-    color: PropTypes.string,
-    original: PropTypes.string,
-    onHover: PropTypes.string,
-  }).isRequired,
-  mouseOn: PropTypes.bool.isRequired,
-};
+// Image.propTypes = {
+//   variation: PropTypes.shape({
+//     color: PropTypes.string,
+//     original: PropTypes.string,
+//     onHover: PropTypes.string,
+//   }).isRequired,
+//   mouseOn: PropTypes.bool.isRequired,
+// };
 
-Product.propTypes = {
-  product: PropTypes.shape({
-    _id: PropTypes.number,
-    name: PropTypes.string,
-    price: PropTypes.string,
-    impacts: PropTypes.arrayOf(PropTypes.string),
-    num_colors: PropTypes.number,
-    variations: PropTypes.arrayOf(PropTypes.object),
-    relatedProductIds: PropTypes.arrayOf(PropTypes.number),
-  }).isRequired,
-  inWishList: PropTypes.bool.isRequired,
-  addToWishList: PropTypes.func.isRequired,
-};
+// Product.propTypes = {
+//   product: PropTypes.shape({
+//     _id: PropTypes.number,
+//     name: PropTypes.string,
+//     price: PropTypes.string,
+//     impacts: PropTypes.arrayOf(PropTypes.string),
+//     num_colors: PropTypes.number,
+//     variations: PropTypes.arrayOf(PropTypes.object),
+//     relatedProductIds: PropTypes.arrayOf(PropTypes.number),
+//   }).isRequired,
+//   inWishList: PropTypes.bool.isRequired,
+//   addToWishList: PropTypes.func.isRequired,
+// };
 
 export default Product;
